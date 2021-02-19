@@ -29,7 +29,7 @@ inquirer.prompt([
     {
         type: "input",
         message: "How to use?",
-        name: "usage information"
+        name: "information"
     },
     // contribution guidelines, 
     {
@@ -57,23 +57,48 @@ inquirer.prompt([
     {
         type: "input",
         message: "GitHub username: ",
-        name: "Questions"
+        name: "username"
     },
     // WHEN I enter my email address
     // THEN this is added to the section of the README entitled Questions, with instructions on how to reach me with additional questions
     {
         type: "input",
         message: "email address: ",
-        name: "Questions"
+        name: "questions"
     }
     // WHEN I click on the links in the Table of Contents
     // THEN I am taken to the corresponding section of the README
-]).then(readme =>{
-    console.log(readme);
+]).then(questions =>{
+    title,
+    description,
+    installation,
+    information,
+    contribution,
+    instructions,
+    license,
+    username,
+    questions,
+    console.log(questions);
 })
+function readMeSetup(){
+    `#${title}
 
+    *[Description](description)
+    *[Installation](installation)
+    *[Information](information)
+    *[Contribution](contribution)
+    *[Instructions](instructions)
+    *[License](license)
+    *[Questions](Questions)
+
+    
+
+    `
+}
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) { }
+function writeToFile(fileName, data) { 
+    fs.writeToFile(`./${fileName.toLowerCase(' ').join('')}.md`, data)
+}
 
 // TODO: Create a function to initialize app
 function init() { }
