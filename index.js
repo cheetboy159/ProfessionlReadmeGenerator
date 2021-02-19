@@ -40,7 +40,7 @@ inquirer.prompt([
     // and test instructions
     {
         type: "input",
-        message: "How to use app?",
+        message: "Test Instructions?",
         name: "instructions"
     },
     // THEN this information is added to the sections of the README entitled Description, Installation, Usage, Contributing, and Tests
@@ -48,9 +48,9 @@ inquirer.prompt([
     // THEN a badge for that license is added near the top of the README and a notice is added to the section of the README entitled License that explains which license the application is covered under
     {
         type: "List",
-        message: "What liceses used?",
         name: "license",
-        choices: ["Apache", "MIT", "Eclipse", "GNU", "BSD", "Mozilla", "The Unlicese"]
+        message: "What liceses used?",
+        choices: ["Apache","MIT","Eclipse","GNU","BSD","Mozilla","Unlicese"]
     },
     // WHEN I enter my GitHub username
     // THEN this is added to the section of the README entitled Questions, with a link to my GitHub profile
@@ -64,7 +64,7 @@ inquirer.prompt([
     {
         type: "input",
         message: "email address: ",
-        name: "questions"
+        name: "email"
     }
     // WHEN I click on the links in the Table of Contents
     // THEN I am taken to the corresponding section of the README
@@ -77,10 +77,10 @@ inquirer.prompt([
     instructions,
     license,
     username,
-    questions,
+    email,
     console.log(questions);
 })
-function readMeSetup(){
+function readMeSetup(data){
     `#${title}
 
     *[Description](description)
@@ -89,15 +89,33 @@ function readMeSetup(){
     *[Contribution](contribution)
     *[Instructions](instructions)
     *[License](license)
-    *[Questions](Questions)
+    *[Contact](contact)
 
-    
-
-    `
+    #Description
+    ${description}
+    #Installation
+    ${installation}
+    #Information
+    ${Information}
+    #Contribution
+    ${Contribution}
+    #Instructions
+    ${Instructions}
+    #License
+    ${License}
+    #Contact
+    * GitHub: ${username}
+    *E-mail: ${email}
+    `;
 }
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) { 
-    fs.writeToFile(`./${fileName.toLowerCase(' ').join('')}.md`, data)
+    fs.writeToFile(`./${fileName.toLowerCase(' ').join('')}.md`, data, (err)=>{
+        if(err){
+            console.log(err);
+        }
+        console.log("readme created");
+    })
 }
 
 // TODO: Create a function to initialize app
