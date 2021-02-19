@@ -47,7 +47,7 @@ inquirer.prompt([
     // WHEN I choose a license for my application from a list of options
     // THEN a badge for that license is added near the top of the README and a notice is added to the section of the README entitled License that explains which license the application is covered under
     {
-        type: "List",
+        type: "list",
         name: "license",
         message: "What liceses used?",
         choices: ["Apache","MIT","Eclipse","GNU","BSD","Mozilla","Unlicese"]
@@ -69,48 +69,42 @@ inquirer.prompt([
     // WHEN I click on the links in the Table of Contents
     // THEN I am taken to the corresponding section of the README
 ]).then(questions =>{
-    title,
-    description,
-    installation,
-    information,
-    contribution,
-    instructions,
-    license,
-    username,
-    email,
+   
     console.log(questions);
+    readMeSetup(questions);
 })
-function readMeSetup(data){
-    `#${title}
+function readMeSetup(questions){
 
-    *[Description](description)
-    *[Installation](installation)
-    *[Information](information)
-    *[Contribution](contribution)
-    *[Instructions](instructions)
-    *[License](license)
-    *[Contact](contact)
+   let readme= `#${questions.title}
 
-    #Description
-    ${description}
-    #Installation
-    ${installation}
-    #Information
-    ${Information}
-    #Contribution
-    ${Contribution}
-    #Instructions
-    ${Instructions}
-    #License
-    ${License}
-    #Contact
-    * GitHub: ${username}
-    *E-mail: ${email}
-    `;
+*[Description](description)
+*[Installation](installation)
+*[Information](information)
+*[Contribution](contribution)
+*[Instructions](instructions)
+*[License](license)
+*[Contact](contact)
+
+#Description
+${questions.description}
+#Installation
+${questions.installation}
+#Information
+${questions.Information}
+#Contribution
+${questions.Contribution}
+#Instructions
+${questions.Instructions}
+#License
+${questions.License}
+#Contact
+* GitHub: ${questions.username}
+*E-mail: ${questions.email}`;
+    writeToFile(readme);
 }
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) { 
-    fs.writeToFile(`./${fileName.toLowerCase(' ').join('')}.md`, data, (err)=>{
+function writeToFile(data) { 
+    fs.writeFile(`./readme.md`, data, (err)=>{
         if(err){
             console.log(err);
         }
