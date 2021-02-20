@@ -17,5 +17,7 @@ When you have the aplication opened in VS code, type node index to run it.
 ## Instructions
 Try it out
 
+![](./assets/mwReadMeGenerator.gif)
+
 ## Contact
 * GitHub: cheetboy159
