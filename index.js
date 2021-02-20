@@ -75,31 +75,40 @@ inquirer.prompt([
 })
 function readMeSetup(questions){
 
-   let readme= `#${questions.title}
+let readme= `
+# **${questions.title}**
 
-*[Description](description)
-*[Installation](installation)
-*[Information](information)
-*[Contribution](contribution)
-*[Instructions](instructions)
-*[License](license)
-*[Contact](contact)
+![badge](https://img.shields.io/badge/license-${questions.license}-<success>)
 
-#Description
+* [Description](description)
+
+* [Installation](installation)
+
+* [Information](information)
+
+* [Contribution](contribution)
+
+* [Instructions](instructions)
+
+* [License](license)
+
+* [Contact](contact)
+
+## Description
 ${questions.description}
-#Installation
+## Installation
 ${questions.installation}
-#Information
-${questions.Information}
-#Contribution
-${questions.Contribution}
-#Instructions
-${questions.Instructions}
-#License
-${questions.License}
-#Contact
+## Information
+${questions.information}
+## Contribution
+${questions.contribution}
+## Instructions
+${questions.instructions}
+## License
+![badge](https://img.shields.io/badge/license-${questions.license}-<success>)
+## Contact
 * GitHub: ${questions.username}
-*E-mail: ${questions.email}`;
+* E-mail: ${questions.email}`;
     writeToFile(readme);
 }
 // TODO: Create a function to write README file
@@ -112,8 +121,3 @@ function writeToFile(data) {
     })
 }
 
-// TODO: Create a function to initialize app
-function init() { }
-
-// Function call to initialize app
-init();
